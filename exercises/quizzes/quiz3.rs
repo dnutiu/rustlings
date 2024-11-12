@@ -13,14 +13,14 @@
 
 use std::fmt::Display;
 
-// TODO: Adjust the struct as described above.
+//  Adjust the struct as described above.
 struct ReportCard<T> where T: Display {
     grade: T,
     student_name: String,
     student_age: u8,
 }
 
-// TODO: Adjust the impl block as described above.
+//  Adjust the impl block as described above.
 impl <T: Display>ReportCard<T> {
     fn print(&self) -> String {
         format!(
