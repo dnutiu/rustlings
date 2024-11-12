@@ -38,21 +38,19 @@ impl From<&str> for Person {
         let elements: Vec<&str> = s.split(",").collect();
 
         match elements.as_slice() {
-            [a, b] => {
-                if let Ok(age) = b.parse::<u8>() {
-                    let name = a.parse().unwrap();
+            [nameUnparsed, ageUnparsed] => {
+                if let Ok(age) = ageUnparsed.parse::<u8>() {
+                    let name = nameUnparsed.parse().unwrap();
                     if name == "" {
-                        return Person {
-                            name: String::from("John"),
-                            age: age,
-                        };
+                        return Person::default();
                     }
-                    return Person {
-                        name: name,
-                        age: age,
-                    };
-                };
-                Person::default()
+                    Person {
+                        name,
+                        age,
+                    }
+                } else {
+                    Person::default()
+                }
             }
             &_ => {
                 Person::default()
